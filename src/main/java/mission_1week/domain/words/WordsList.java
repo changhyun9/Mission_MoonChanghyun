@@ -2,6 +2,7 @@ package mission_1week.domain.words;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class WordsList {
     private static int index = 0;
@@ -30,5 +31,9 @@ public class WordsList {
 
     public int getIndex() {
         return index;
+    }
+
+    public Set<Integer> getKeySet() {
+        return wordsList.keySet();
     }
 }

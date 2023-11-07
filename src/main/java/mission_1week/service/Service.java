@@ -1,6 +1,10 @@
 package mission_1week.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import mission_1week.domain.words.Words;
 import mission_1week.domain.words.WordsList;
 
@@ -26,5 +30,20 @@ public class Service {
 
     public WordsList getWordsList() {
         return wordsList;
+    }
+
+    public void printWordsList() {
+        // map의 key를 받아서 역순으로 저장해서 일일이 출력
+        Set<Integer> keySet = wordsList.getKeySet();
+        List<Integer> keys = new ArrayList<>(keySet);
+        Collections.reverse(keys);
+
+
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("----------------------");
+        for (Integer key : keys) {
+            Words word = wordsList.getWord(key);
+            System.out.println(key + " / " + word.getWriter() + " / " + word.getSentence());
+        }
     }
 }
