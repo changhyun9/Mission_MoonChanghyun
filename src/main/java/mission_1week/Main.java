@@ -22,7 +22,7 @@ public class Main {
                 service.insertWordsList();
             }
             if(command.equals("수정")){
-                // 수정 서비스 실행
+                service.modifyWords(index);
             }
             if(command.equals("삭제")){
                 service.deleteWords(index);
@@ -31,7 +31,8 @@ public class Main {
                 service.printWordsList();
             }
             if(command.equals("종료")){
-                //종료 서비스 실행
+                //종료 전 파일에 저장하는 로직 실행
+                break;
             }
         }
     }

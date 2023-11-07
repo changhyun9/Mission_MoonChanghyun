@@ -36,4 +36,8 @@ public class WordsList {
     public Set<Integer> getKeySet() {
         return wordsList.keySet();
     }
+
+    public void modifyWords(int index, Words modifiedWords) {
+        wordsList.replace(index, modifiedWords);
+    }
 }
