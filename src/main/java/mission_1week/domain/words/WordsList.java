@@ -23,4 +23,12 @@ public class WordsList {
     public void deleteWords(int index){
         wordsList.remove(index);
     }
+
+    public int size() {
+        return wordsList.size();
+    }
+
+    public int getIndex() {
+        return index;
+    }
 }
