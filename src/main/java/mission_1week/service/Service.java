@@ -33,7 +33,6 @@ public class Service {
     }
 
     public void printWordsList() {
-        // map의 key를 받아서 역순으로 저장해서 일일이 출력
         Set<Integer> keySet = wordsList.getKeySet();
         List<Integer> keys = new ArrayList<>(keySet);
         Collections.reverse(keys);
@@ -45,5 +44,15 @@ public class Service {
             Words word = wordsList.getWord(key);
             System.out.println(key + " / " + word.getWriter() + " / " + word.getSentence());
         }
+    }
+
+    public void deleteWords(int index){
+        Set<Integer> keySet = wordsList.getKeySet();
+        boolean contains = keySet.contains(index);
+        if (!contains) {
+            throw new IllegalArgumentException(index + "번 명언은 존재하지 않습니다.");
+        }
+        wordsList.deleteWords(index);
+        System.out.println(index + "번 명언이 삭제되었습니다.");
     }
 }

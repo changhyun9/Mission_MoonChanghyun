@@ -25,7 +25,7 @@ public class Main {
                 // 수정 서비스 실행
             }
             if(command.equals("삭제")){
-                // 삭제 서비스 실행
+                service.deleteWords(index);
             }
             if(command.equals("목록")){
                 service.printWordsList();

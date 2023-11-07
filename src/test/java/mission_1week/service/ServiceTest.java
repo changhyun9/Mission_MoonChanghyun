@@ -37,7 +37,7 @@ class ServiceTest {
         Assertions.assertThat(words.getWriter()).isEqualTo("수정작가입니다.");
 
     }
-
+*/
     @DisplayName("특정 인덱스를 받아, 인덱스에 해당하는 값이 없으면 예외를 반환한다.")
     @Test
     void deleteWordsByNonExistIndex() {
@@ -51,11 +51,9 @@ class ServiceTest {
         String input = "명언입니다.\n작가입니다.\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        service.insertWordsList();
+        Scanner scanner = new Scanner(System.in);
+        service.insertWordsList(); // 테스트시 매개변수로 Scanner 를 넘겨줌.
         service.deleteWords(1);
         Assertions.assertThat(service.getWordsList().size()).isEqualTo(0);
     }
-    // 목록 ->
-
-     */
 }
