@@ -6,7 +6,7 @@ public class RequestObject {
     private String command;
     private int index;
 
-    public RequestObject(String input) {
+    public RequestObject(String input) throws IllegalArgumentException {
         matchPattern(input);
         String[] split = input.split("\\?");
         if (split.length >= 2) {
@@ -20,7 +20,7 @@ public class RequestObject {
         }
     }
 
-    private boolean matchPattern(String input) {
+    private boolean matchPattern(String input){
         if (input.matches("[ㄱ-ㅎ|가-힣]*\\?id=[0-9]*")) {
             return true;
         }

@@ -56,7 +56,7 @@ public class Service {
         }
     }
 
-    public void deleteWords(int index){
+    public void deleteWords(int index) throws IllegalArgumentException {
         isExists(index);
         wordsList.deleteWords(index);
         System.out.println(index + "번 명언이 삭제되었습니다.");
