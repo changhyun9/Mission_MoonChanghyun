@@ -1,5 +1,6 @@
 package mission_1week;
 
+import java.io.IOException;
 import java.util.Scanner;
 import mission_1week.domain.request.RequestObject;
 import mission_1week.service.Service;
@@ -8,7 +9,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("== 명언 앱 ==");
         Scanner sc = new Scanner(System.in);
-        Service service = new Service();
+        Service service = null;
+        try {
+            service = new Service();
+            service.fileBuild();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         while (true) {
             try {
@@ -32,13 +39,14 @@ public class Main {
                     service.printWordsList();
                 }
                 if (command.equals("종료")) {
-                    //종료 전 파일에 저장하는 로직 실행
+                    service.fileStore();
                     break;
                 }
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
-
     }
 }

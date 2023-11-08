@@ -1,5 +1,11 @@
 package mission_1week.service;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,10 +17,18 @@ import mission_1week.domain.words.WordsList;
 public class Service {
     private final WordsList wordsList;
     private static Scanner sc;
+    private final String filePath = "/Users/munchanghyeon/Desktop/javaProject/Mission_MoonChanghyun/Mission/file/명언.txt";
+    private File file;
+    private FileWriter fw;
+    private BufferedWriter bw;
+    private BufferedReader fr;
 
-    public Service() {
+    public Service() throws IOException {
         this.wordsList = new WordsList();
         this.sc = new Scanner(System.in);
+        this.file = new File(filePath);
+        file.createNewFile();
+        this.fr  = new BufferedReader(new FileReader(filePath));
     }
 
     public void insertWordsList() {
@@ -92,8 +106,25 @@ public class Service {
         String modifiedSentence = enterSentence();
         return modifiedSentence;
     }
-}
 
-// 예외 상황 처리하기, 예외가 발생한 곳부터 재입력 받는 식으로
-// 명령 입력 시, 패턴이 안맞거나, 인덱스가 없는 경우 예외문을 출력하고, 해당 과정부터 재시작
-// 위의 단계를 모두 해결하였다면, 9단계로 넘어가기 혹은 계층 분류, 또는 클래스 분리 같은 리팩토링 하기
+    public void fileStore() throws IOException {
+        Set<Integer> allKey = wordsList.getKeySet();
+        for (Integer key : allKey) {
+            Words word = wordsList.getWord(key);
+            bw.write(key+","+word.getSentence()+","+word.getWriter());
+            bw.write("\n");
+        }
+        bw.close();
+    }
+
+    public void fileBuild() throws IOException {
+        String read;
+        while((read = fr.readLine()) != null){
+            String[] split = read.split(",");
+            Words words = new Words(split[1], split[2]);
+            wordsList.InsertWords(words);
+        }
+        this.fw = new FileWriter(file);
+        this.bw = new BufferedWriter(fw);
+    }
+}
